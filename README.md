@@ -376,7 +376,7 @@ ProgrammingWithNick E-Commerce is a complete online shopping solution with separ
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/programmingwithnick-ecommerce.git
+git clone https://github.com/ProgrammingWithNick/Ecommerce.git
 cd programmingwithnick-ecommerce
 ```
 
@@ -561,7 +561,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **ProgrammingWithNick**
 
 - Website: [programmingwithnick.com](https://programmingwithnick.com)
-- Email: nick@programmingwithnick.com
+- Email: nikhilkhavdu441@gmail.com
 - Twitter: [@codingwithnick](https://twitter.com/codingwithnick)
 - GitHub: [@programmingwithnick](https://github.com/programmingwithnick)
 
