@@ -30,12 +30,6 @@ interface DeleteAddressPayload {
     addressId: string;
 }
 
-// Define possible API response format
-interface ApiResponse {
-    success: boolean;
-    data: any;
-}
-
 // Slice state
 interface AddressState {
     isLoading: boolean;
@@ -46,17 +40,6 @@ interface AddressState {
 const initialState: AddressState = {
     isLoading: false,
     addressList: [],
-};
-
-// Helper function to extract proper address from API response
-const extractAddressFromResponse = (response: any): any => {
-    // If the API returns a success/data structure
-    if (response && response.data && response.success) {
-        return response.data;
-    }
-    
-    // If the API returns the address directly
-    return response;
 };
 
 // Thunks

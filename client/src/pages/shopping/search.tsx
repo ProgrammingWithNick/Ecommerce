@@ -7,26 +7,31 @@ import { debounce } from 'lodash-es';
 import ProductDetailsDialog from '@/components/shopping/product-details';
 import ShoppingProductTile from '@/components/shopping/product-tile';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Search, X } from 'lucide-react';
 
 import { addToCart, fetchCartItems } from '@/store/shop/cart-slice';
-import { fetchProductDetails, setProductDetails } from '@/store/shop/products-slice';
+import { setProductDetails } from '@/store/shop/products-slice';
 import { getSearchResults, resetSearchResults } from '@/store/shop/search-slice';
 
 import type { AppDispatch, RootState } from '@/store/store';
-import type { Product } from "@/components/shopping/product-tile";
+import type { Product as UIProduct } from "@/components/shopping/product-tile";
 
-// Define interface for ProductDetails that matches what ProductDetailsDialog expects
-// Making _id required to match the Product interface
+// Import the Product type from the store to distinguish it from the UI Product type
+import type { Product as StoreProduct } from "@/store/shop/products-slice";
+
+// Define interface for ProductDetails to use with the dialog
+// No need to extend, we'll handle the conversion in the function
 interface ProductDetailsType {
-    _id: string;  // Now required, not optional
+    _id: string;
     title: string;
     description: string;
     image: string;
     price: number;
     salePrice: number;
     totalStock: number;
+    brand: string;
+    category: string;
+    averageReview?: number;
 }
 
 function SearchProducts() {
@@ -111,19 +116,22 @@ function SearchProducts() {
     }, [cartItems, dispatch, user]);
 
     // Handle fetch and set product details
-    const handleGetProductDetails = useCallback((product: Product) => {
-        // Map and fix the product details here to match ProductDetailsType
-        const fixedProductDetails: ProductDetailsType = {
-            _id: product._id,  // Now matches required field
+    const handleGetProductDetails = useCallback((product: UIProduct) => {
+        // Convert UIProduct to StoreProduct by ensuring all required fields have values
+        const storeProductDetails: StoreProduct = {
+            _id: product._id,
             title: product.title,
-            description: product.description || '',
-            image: product.image || '',
-            price: product.price || 0,
-            salePrice: product.salePrice || 0,
-            totalStock: product.totalStock || 0,
+            description: product.description || '', // Ensure description is never undefined
+            image: product.image,
+            brand: product.brand,
+            category: product.category,
+            price: product.price,
+            salePrice: product.salePrice,
+            totalStock: product.totalStock,
+            averageReview: product.averageReview || 0 // Provide default if undefined
         };
 
-        dispatch(setProductDetails(fixedProductDetails));
+        dispatch(setProductDetails(storeProductDetails));
     }, [dispatch]);
 
     // Clear search
@@ -196,9 +204,9 @@ function SearchProducts() {
                             {searchResults.map((product) => (
                                 <ShoppingProductTile
                                     key={product._id}
-                                    product={product as Product}
+                                    product={product as UIProduct}
                                     handleAddtoCart={handleAddToCart}
-                                    handleGetProductDetails={() => handleGetProductDetails(product as Product)}
+                                    handleGetProductDetails={() => handleGetProductDetails(product as UIProduct)}
                                 />
                             ))}
                         </div>

@@ -23,7 +23,7 @@ import { OrderDetails, OrderItem } from "@/types/order.types";
 
 function ShoppingOrders() {
     const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
-    const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
+    const [, setSelectedOrderId] = useState<string | null>(null);
 
     const dispatch = useDispatch<AppDispatch>();
     const { user } = useSelector((state: RootState) => state.auth);

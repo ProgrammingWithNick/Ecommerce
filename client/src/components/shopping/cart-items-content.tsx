@@ -23,7 +23,6 @@ type Props = {
 function UserCartItemsContent({ cartItem }: Props) {
     const dispatch = useDispatch<AppDispatch>();
     const { user } = useSelector((state: RootState) => state.auth);
-    const { cartItems = [] } = useSelector((state: RootState) => state.shopCart);
     const { productList = [] } = useSelector((state: RootState) => state.adminProducts);
 
     function handleUpdateQuantity(item: CartItem, typeOfAction: "plus" | "minus") {

@@ -19,7 +19,7 @@ export interface Product {
 
 interface ShoppingProductTileProps {
   product: Product;
-  handleGetProductDetails: () => void;  // Changed to match how it's called in SearchProducts
+  handleGetProductDetails: () => void;
   handleAddtoCart: (productId: string, totalStock: number) => void;
 }
 

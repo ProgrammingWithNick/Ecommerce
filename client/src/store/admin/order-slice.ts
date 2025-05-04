@@ -1,6 +1,6 @@
 // src/store/admin/order-slice.ts
 
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;

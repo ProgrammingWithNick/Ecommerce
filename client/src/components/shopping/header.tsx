@@ -42,7 +42,7 @@ interface MenuItem {
 function MenuItems() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
 
     function handleNavigate(menuItem: MenuItem) {
         sessionStorage.removeItem("filters");
@@ -80,7 +80,7 @@ function MenuItems() {
 
 function HeaderRightContent() {
     const { user } = useSelector((state: RootState) => state.auth);
-    const { cartItems, isLoading } = useSelector((state: RootState) => state.shopCart);
+    const { cartItems } = useSelector((state: RootState) => state.shopCart);
     const [openCartSheet, setOpenCartSheet] = useState<boolean>(false);
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
@@ -158,7 +158,6 @@ function HeaderRightContent() {
 }
 
 function ShoppingHeader() {
-    const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
     return (
         <header className="sticky top-0 z-40 w-full border-b bg-background">

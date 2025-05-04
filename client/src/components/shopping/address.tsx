@@ -24,12 +24,6 @@ interface Address {
     userId: string;
 }
 
-// Fix for API responses that don't match our Address interface
-interface ApiResponse {
-    success: boolean;
-    data: any;
-}
-
 type AddressFormData = Omit<Address, "_id" | "userId">;
 
 const initialAddressFormData: AddressFormData = {
