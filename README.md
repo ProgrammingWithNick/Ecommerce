@@ -36,7 +36,7 @@
 
 ## 🌟 Overview
 
-ProgrammingWithNick E-Commerce is a complete online shopping solution with separate customer and admin interfaces. The application provides a seamless shopping experience from browsing products to checkout and payment processing, along with a powerful admin dashboard for managing products, orders, and more.
+ProgrammingWithNick E-Commerce is a complete online shopping solution with separate customer and admin interfaces. The application provides a seamless shopping experience from browsing products to checkout and payment processing, along with a powerful admin dashboard for managing products, orders, and more...
 
 ---
 
